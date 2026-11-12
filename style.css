@@ -2020,3 +2020,14 @@ input:focus, select:focus {
         padding: 20px;
     }
 }
+/* --- PERBAIKAN KONTEN 1 (NAIK & BACKGROUND TERANG) --- */
+.main-hero {
+    /* Menerangkan background agar warnanya sama persis dengan kartu */
+    background-image: linear-gradient(rgba(10, 15, 28, 0.4), rgba(10, 15, 28, 0.5)), url('assets/images/card.jpg') !important;
+    
+    /* Membuka kunci posisi tengah agar kartu bisa ditarik ke atas */
+    align-items: flex-start !important; 
+    
+    /* Jarak kartu dari ujung atas layar. (Ubah jadi 5vh jika ingin lebih naik lagi) */
+    padding-top: 8vh !important; 
+}
