@@ -26,8 +26,8 @@ if (guestNameElement) {
 const audio = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 
-const songCover = "assets/audio/jamrud.mp3";    // Lagu di Halaman Utama (Cover)
-const songContent = "assets/audio/ono-niha.mp3"; // Lagu di Halaman Isi Undangan
+const songCover = "assets/audio/ono-niha.mp3";    // Lagu di Halaman Utama (Cover)
+const songContent = "assets/audio/jamrud.mp3"; // Lagu di Halaman Isi Undangan
 
 function setAndPlaySong(songPath) {
     if (!audio) return;
