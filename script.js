@@ -5,7 +5,7 @@ const config = {
     coverImageDesktop: "assets/images/lompat-batu-desktop.jpg", 
     coverImageMobile: "assets/images/lompat-batu-mobile.jpg", 
     eventDate: "2026-11-14T13:00:00", 
-    whatsappNumber: "628123456789", 
+    whatsappNumber: "6282294703180", // Nomor WA sudah diganti
     guestNamePlaceholder: "Tamu Kehormatan"
 };
 
@@ -68,6 +68,32 @@ function handleRouting() {
         cover.style.transform = 'none';
         cover.style.opacity = '1';
         mainContent.style.display = 'none';
+        setAndPlaySong(songCover);
+    }
+}
+function handleRouting() {
+    if (!cover || !mainContent) return;
+
+    if (window.location.hash === '#undangan') {
+        cover.style.display = 'none';
+        mainContent.style.display = 'block';
+        
+        // MENCEGAH HALAMAN NEMPEL / TERTUMPUK
+        document.body.style.overflow = 'auto';
+        document.body.style.height = 'auto';
+        window.scrollTo(0, 0);
+        
+        setAndPlaySong(songContent);
+    } else {
+        cover.style.display = 'flex';
+        cover.style.transform = 'none';
+        cover.style.opacity = '1';
+        mainContent.style.display = 'none';
+        
+        // KUNCI HALAMAN SAAT DI COVER
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
+        
         setAndPlaySong(songCover);
     }
 }
@@ -211,13 +237,20 @@ window.addEventListener('resize', updateResponsiveBackground);
 const rsvpForm = document.getElementById('rsvp-form');
 if (rsvpForm) {
     rsvpForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+        // Mencegah halaman refresh/berkedip saat tombol diklik
+        e.preventDefault(); 
+        
         const name = document.getElementById('rsvp-name').value.trim();
         const status = document.getElementById('rsvp-status').value;
-        
-        const msg = `Shalom / Ya'ahowu.\nHalo Panitia, saya *${name}* mengonfirmasi bahwa saya *${status}* pada perayaan HUT GEMA NIAS ke-17.\n\nMemaknai usia 17 tahun sebagai masa peralihan menuju kedewasaan, ini adalah momen penting bagi kita untuk bangkit dan bersinar setelah melewati berbagai tantangan.\n\nMari bersama mewujudkan "RISE & SHINE: Satu Generasi Menuju Generasi Baru!"\nTerima kasih.`;
-        
-        window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+
+        // Pesan rapi tanpa kode yang rusak
+        const msg = `Shalom / Ya'ahowu.\nHalo Panitia, saya *${name}*, mengonfirmasi bahwa saya *${status}* pada perayaan HUT GEMA NIAS ke-17.\n\nMemaknai usia 17 tahun sebagai masa peralihan menuju kedewasaan, ini adalah momen penting bagi kita untuk bangkit dan bersinar setelah melewati berbagai tantangan.\n\nMari bersama mewujudkan "RISE & SHINE: Satu Generasi Menuju Generasi Baru!"\nTerima kasih.`;
+
+        // Nomor WA Panitia yang baru (tanpa tanda plus, langsung 62)
+        const targetWA = "6282294703180";
+
+        // Eksekusi membuka WhatsApp
+        window.open(`https://wa.me/${targetWA}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 }
 
