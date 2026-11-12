@@ -172,29 +172,35 @@ body.cover-body {
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-/* --- BUTTONS --- */
+/* --- TOMBOL BUKA UNDANGAN (SOLID GOLD) --- */
 .btn-primary {
-    background: rgba(10, 10, 10, 0.5);
-    color: var(--gold-primary);
-    border: 1px solid var(--gold-primary);
-    padding: 15px 40px;
+    background: #C9A64E !important; 
+    color: #000000 !important; 
+    border: none !important;
+    padding: 15px 45px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem; 
-    letter-spacing: 2px;
-    border-radius: 30px; 
+    font-size: 1.05rem; 
+    font-weight: 700;
+    letter-spacing: 3px; 
+    border-radius: 50px; 
     cursor: pointer;
-    transition: all 0.4s ease;
     text-transform: uppercase;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); 
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background: var(--gold-primary); 
-    color: var(--dark-bg);
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
-    transform: translateY(-3px);
+    background: #E8C468 !important; 
+    color: #000000 !important;
+    transform: translateY(-3px) scale(1.03); 
+    box-shadow: 0 10px 25px rgba(201, 166, 78, 0.6); 
 }
+@keyframes pulse-btn {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
 
 /* --- ANIMASI TEKS MASUK (FADE UP) --- */
 .fade-up { 
@@ -786,13 +792,26 @@ input:focus, select:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap; /* MEMBUAT TEKS BISA TURUN BARIS DI HP */
     gap: 8px;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     margin-bottom: 20px;
     text-transform: uppercase;
     animation: fadeInPillars 1.5s ease-in-out infinite alternate;
+    padding: 0 10px; /* Memberi jarak aman dari tepi layar */
+    text-align: center;
+}
+/* Khusus untuk HP dengan layar sempit */
+@media (max-width: 430px) {
+    .animated-pillars {
+        font-size: 0.55rem; /* Mengecilkan teks di layar HP */
+        gap: 4px; /* Merapatkan jarak antar kata */
+    }
+    .animated-pillars .dot {
+        margin: 0 2px;
+    }
 }
 
 .animated-pillars .collab { color: #4facfe; }   /* Biru Elegan */
