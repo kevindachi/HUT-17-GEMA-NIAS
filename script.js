@@ -31,18 +31,28 @@ if (openBtn) {
 }
 
 // ==========================================
-// 4. SISTEM AUDIO (OTOMATIS BACA HALAMAN)
+// 4. SISTEM AUDIO (OTOMATIS BACA HALAMAN & NYALA DI MENU AWAL)
 // ==========================================
 const audio = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 
 // Deteksi apakah sedang di halaman Cover atau Isi Undangan
 const isCoverPage = document.getElementById('cover') !== null;
-const songPath = isCoverPage ? "assets/audio/jamrud.mp3" : "assets/audio/jamrud.mp3";
+const songPath = isCoverPage ? "assets/audio/jamrud.mp3" : "assets/audio/ono-niha.mp3";
 
 if (audio) {
     audio.src = songPath;
     audio.load();
+    
+    // Paksa langsung memutar lagu di menu awal (Cover maupun Isi)
+    audio.play().then(() => {
+        if (musicBtn) {
+            musicBtn.classList.add('playing');
+            musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+        }
+    }).catch(err => {
+        console.log("Autoplay ditahan browser, menunggu interaksi sentuhan pertama.");
+    });
 }
 
 if (musicBtn) {
@@ -58,13 +68,13 @@ const unlockAudio = () => {
             }
         }).catch(() => {});
     }
-    // Hapus deteksi setelah disentuh pertama kali
+    // Hapus deteksi setelah disentuh pertama kali oleh pengguna
     document.removeEventListener('click', unlockAudio);
     document.removeEventListener('touchstart', unlockAudio);
     document.removeEventListener('scroll', unlockAudio);
 };
 
-// Aktifkan musik saat ada interaksi (klik/sentuh/scroll)
+// Aktifkan musik secara total saat ada interaksi pertama (klik/sentuh/scroll)
 document.addEventListener('click', unlockAudio);
 document.addEventListener('touchstart', unlockAudio);
 document.addEventListener('scroll', unlockAudio);
