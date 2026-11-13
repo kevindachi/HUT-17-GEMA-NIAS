@@ -53,7 +53,7 @@ body {
 /* Mengatur kontainer utama agar tidak ada jarak spasi hitam berlebih */
 #main-content {
     width: 100%;
-    display: none; /* Diatur otomatis oleh JS routing */
+    display: block; /* Diatur otomatis oleh JS routing */
 }
 
 h1, h2 { 
@@ -2020,14 +2020,81 @@ input:focus, select:focus {
         padding: 20px;
     }
 }
-/* --- PERBAIKAN KONTEN 1 (NAIK & BACKGROUND TERANG) --- */
+/* =======================================================
+   FINALISASI BACKGROUND BODY & POSISI KARTU ATAS
+   ======================================================= */
+
+/* 1. Background Paling Belakang (Body) diseragamkan untuk semua konten & perangkat */
+body {
+    background-image: linear-gradient(rgba(10, 15, 28, 0.4), rgba(10, 15, 28, 0.7)), url('assets/images/lompat-batu-mobile.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important; /* Latar belakang diam saat digeser */
+    background-color: #05080f !important;
+}
+
+/* 2. Menghapus background dari semua section agar tembus pandang ke gambar Body */
+.main-hero, 
+.countdown-section, 
+.full-screen-section {
+    background: transparent !important;
+    background-image: none !important;
+    background-color: transparent !important;
+}
+
+/* 3. Menarik Kartu Konten 1 ke atas dan membiarkan Konten 2 mengintip di bawah (Portrait) */
 .main-hero {
-    /* Menerangkan background agar warnanya sama persis dengan kartu */
-    background-image: linear-gradient(rgba(10, 15, 28, 0.4), rgba(10, 15, 28, 0.5)), url('assets/images/card.jpg') !important;
+    align-items: flex-start !important; /* Melepas posisi tengah, menarik kartu ke atas */
+    padding-top: 6vh !important;        /* Jarak kartu pertama dari atas layar */
+    min-height: auto !important;        /* Tidak memaksakan 1 layar penuh agar kartu 2 bisa ngintip */
+    padding-bottom: 20px !important;
+}
+
+/* 4. Mengatur jarak antar kartu selanjutnya agar rapi saat di-swipe */
+.full-screen-section {
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+    min-height: auto !important;
+}
+
+/* 5. Penyesuaian khusus di layar Laptop/PC (Landscape) */
+@media (min-width: 768px) {
+    .main-hero {
+        padding-top: 10vh !important; /* Sedikit lebih turun di laptop agar proporsional */
+        padding-bottom: 40px !important;
+    }
+}
+
+/* Memastikan halaman pertama (Cover) pas memenuhi layar HP dengan kartu di atas */
+.main-hero {
+    min-height: 92vh !important; /* Sengaja disisakan sedikit agar judul kartu 2 kelihatan mengintip */
+    padding-bottom: 50px !important; 
+}
+/* =======================================================
+   PENYESUAIAN JARAK RAPAT ANTARA KARTU 1 DAN KARTU 2
+   ======================================================= */
+
+/* Merapatkan jarak section pertama di HP agar kartu 2 tidak terlalu jauh di bawah */
+@media (max-width: 767px) {
+    .main-hero {
+        min-height: 85vh !important; /* Mengurangi tinggi section 1 agar kartu 2 naik mendekat */
+        padding-bottom: 20px !important;
+    }
     
-    /* Membuka kunci posisi tengah agar kartu bisa ditarik ke atas */
-    align-items: flex-start !important; 
-    
-    /* Jarak kartu dari ujung atas layar. (Ubah jadi 5vh jika ingin lebih naik lagi) */
-    padding-top: 8vh !important; 
+    .full-screen-section {
+        padding-top: 10px !important; /* Merapatkan jarak atas section 2 */
+    }
+}
+
+@media (min-width: 768px) {
+    .main-hero {
+        min-height: 85vh !important; /* Membuat tinggi section pertama pas, tidak kepanjangan */
+        padding-top: 4vh !important;   
+        padding-bottom: 20px !important;
+    }
+
+    .full-screen-section {
+        padding-top: 10px !important;  /* Merapatkan jarak section kedua agar kartu mengintip rapat */
+        padding-bottom: 40px !important;
+    }
 }
