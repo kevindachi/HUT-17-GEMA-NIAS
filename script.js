@@ -38,7 +38,7 @@ const musicBtn = document.getElementById('music-btn');
 
 // Deteksi apakah sedang di halaman Cover atau Isi Undangan
 const isCoverPage = document.getElementById('cover') !== null;
-const songPath = isCoverPage ? "assets/audio/jamrud.mp3" : "assets/audio/ono-niha.mp3";
+const songPath = isCoverPage ? "assets/audio/jamrud.mp3" : "assets/audio/jamrud.mp3";
 
 if (audio) {
     audio.src = songPath;
